@@ -26,3 +26,5 @@ The final state of the application can also be found in the `testing-final` bran
 
 ## JEST
 - to test the only file run `npx jest -- productsSlice`
+- to run tests watch type `npx jest --watch`
+- to isolate tests over one file press `p` when watch and type filename `cartSlice`
