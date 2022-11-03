@@ -23,3 +23,6 @@ The final state of the application can also be found in the `testing-final` bran
 - [React Router](https://reactrouter.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
+
+## JEST
+- to test the only file run `npx jest -- productsSlice`
