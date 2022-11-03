@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667470527017" clover="3.2.0">
-  <project timestamp="1667470527018" name="All files">
-    <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0" elements="21" coveredelements="0" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
-    <file name="api.ts" path="C:\SPA\ts\redux-ts-advanced-tests\src\app\api.ts">
-      <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="14" count="0" type="stmt"/>
-      <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="23" count="0" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="28" count="0" type="stmt"/>
-      <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="30" count="0" type="stmt"/>
-      <line num="32" count="0" type="stmt"/>
-      <line num="36" count="0" type="stmt"/>
-      <line num="37" count="0" type="stmt"/>
-    </file>
+<coverage generated="1667491778187" clover="3.2.0">
+  <project timestamp="1667491778187" name="All files">
+    <metrics statements="45" coveredstatements="34" conditionals="6" coveredconditionals="1" methods="14" coveredmethods="11" elements="65" coveredelements="46" complexity="0" loc="45" ncloc="45" packages="2" files="2" classes="2"/>
+    <package name="app">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="store.ts" path="C:\SPA\ts\redux-ts-advanced-tests\src\app\store.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.cart">
+      <metrics statements="44" coveredstatements="34" conditionals="6" coveredconditionals="1" methods="14" coveredmethods="11"/>
+      <file name="cartSlice.ts" path="C:\SPA\ts\redux-ts-advanced-tests\src\features\cart\cartSlice.ts">
+        <metrics statements="44" coveredstatements="34" conditionals="6" coveredconditionals="1" methods="14" coveredmethods="11"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="37" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="84" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="90" count="7" type="stmt"/>
+        <line num="92" count="5" type="stmt"/>
+        <line num="93" count="5" type="stmt"/>
+        <line num="94" count="5" type="stmt"/>
+        <line num="95" count="7" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="102" count="10" type="stmt"/>
+        <line num="103" count="10" type="stmt"/>
+        <line num="105" count="7" type="stmt"/>
+        <line num="106" count="7" type="stmt"/>
+        <line num="107" count="11" type="stmt"/>
+        <line num="109" count="7" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>
