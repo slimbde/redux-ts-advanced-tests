@@ -1,5 +1,5 @@
 import { RootState } from './../../app/store';
-import cartReducer, { addToCart, CartState, getMemoizedNumItems, getNumItems, getTotalPrice, removeFromCart, updateQuantity } from "./cartSlice"
+import cartReducer, { addToCart, CartState, getMemoizedNumItems, getNumItems, getTotalPrice, removeFromCart, updateQuantity, checkoutCart } from "./cartSlice"
 import products from "../../../public/products.json"
 
 
@@ -282,6 +282,47 @@ describe("selectors", () => {
 
       getTotalPrice({ ...rootState })
       expect(getTotalPrice.recomputations()).toBe(2)
+    })
+  })
+})
+
+
+describe("thunks", () => {
+  ///// the tests below fail because fetch doesn't work in node environment
+
+  describe("checkoutCart w/mocked dispatch", () => {
+    it("should checkout", async () => {
+      const dispatch = jest.fn()
+      const state: RootState = {
+        products: { products: {} },
+        cart: {
+          checkoutState: "READY",
+          errorMessage: "",
+          items: { abc: 123 }
+        }
+      }
+      const thunk = checkoutCart()
+      await thunk(dispatch, () => state, undefined)
+      const { calls } = dispatch.mock
+
+      expect(calls).toHaveLength(2)
+    })
+
+    it("should fail with no items", async () => {
+      const dispatch = jest.fn()
+      const state: RootState = {
+        products: { products: {} },
+        cart: {
+          checkoutState: "READY",
+          errorMessage: "",
+          items: {}
+        }
+      }
+      const thunk = checkoutCart()
+      await thunk(dispatch, () => state, undefined)
+      const { calls } = dispatch.mock
+
+      expect(calls).toHaveLength(2)
     })
   })
 })
