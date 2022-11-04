@@ -1,4 +1,4 @@
-import { getStoreWithState, RootState, store } from '../app/store';
+import { getStoreWithState, RootState } from '../app/store';
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import React from "react";
