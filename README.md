@@ -11,12 +11,6 @@ npm install
 npm run dev
 ```
 
-## Lessons
-
-The `lessons/` folder contains a unique folder for each lesson including a README with a description of that lesson and any files that were modified as part of that lesson.
-
-The final state of the application can also be found in the `testing-final` branch.
-
 ## Technologies
 
 - [Vite](https://vitejs.dev/)
@@ -30,3 +24,19 @@ The final state of the application can also be found in the `testing-final` bran
 - to isolate tests over one file press `p` when watch and type filename `cartSlice`
 - to start up counting function recomputations first reset them `getMemoizedNumItems.resetRecomputations()`
 - to figure out the number of function recomputations call `getMemoizedNumItems.recomputations()`
+
+- to spy on some async request we can use `jest.spyOn` method. Look into `Products.test.tsx` file
+- to preview output jsx use `debug` method
+- unlike `getAllByRole` ***findByRole*** waits unless it finds it on page
+
+## Features
+- To make fetch work with jest, `npm i -D whatwg-fetch`  
+  Then in `jest-setup.ts` add  
+```javascript
+const fetchPolifill = require('whatwg-fetch')
+
+global.fetch = fetchPolifill.fetch
+global.Request = fetchPolifill.Request
+global.Headers = fetchPolifill.Headers
+global.Response = fetchPolifill.Response
+```

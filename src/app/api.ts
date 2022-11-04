@@ -11,7 +11,7 @@ export interface Product {
 export async function getProducts(): Promise<Product[]> {
   const results = await fetch("/products.json");
   const products = results.json();
-  return products;
+  return products as unknown as Product[];
 }
 
 export type CartItems = { [productID: string]: number };
@@ -25,7 +25,7 @@ export async function checkout(items: CartItems): Promise<CheckoutResponse> {
     method: "POST",
     body: JSON.stringify(items),
   });
-  const data = await response.json();
+  const data = await response.json() as CheckoutResponse;
   if (!data.success) {
     throw new Error(data.error);
   }
