@@ -55,6 +55,7 @@ export function Cart() {
               <td>
                 <input
                   type="text"
+                  data-testid="quantity"
                   className={styles.input}
                   defaultValue={quantity}
                   onBlur={(e) => onQuantityChanged(e, id)}

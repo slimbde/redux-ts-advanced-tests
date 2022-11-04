@@ -28,6 +28,7 @@ npm run dev
 - to spy on some async request we can use `jest.spyOn` method. Look into `Products.test.tsx` file
 - to preview output jsx use `debug` method
 - unlike `getAllByRole` ***findByRole*** waits unless it finds it on page
+- to get div by css selector use `getByText("$0.00", { selector: ".total" })`
 
 ## Features
 - To make fetch work with jest, `npm i -D whatwg-fetch`  
