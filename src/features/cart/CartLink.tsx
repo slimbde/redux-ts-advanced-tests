@@ -8,7 +8,7 @@ export function CartLink() {
   const numItems = useAppSelector(getMemoizedNumItems);
   return (
     <Link className={styles.link} to="/cart">
-      <span className={styles.text}>
+      <span className={styles.text} data-testid="link">
         🛒&nbsp;&nbsp;{numItems ? numItems : "Cart"}
       </span>
     </Link>
