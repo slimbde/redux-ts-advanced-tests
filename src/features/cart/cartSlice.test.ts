@@ -288,7 +288,7 @@ describe("selectors", () => {
 
 
 describe("thunks", () => {
-  ///// the tests below fail because fetch doesn't work in node environment
+  ///// whatwg-fetch doesn't solve the fetch problem
 
   describe("checkoutCart w/mocked dispatch", () => {
     it("should checkout", async () => {
@@ -304,6 +304,8 @@ describe("thunks", () => {
       const thunk = checkoutCart()
       await thunk(dispatch, () => state, undefined)
       const { calls } = dispatch.mock
+
+      console.log(calls[1][0])
 
       expect(calls).toHaveLength(2)
     })

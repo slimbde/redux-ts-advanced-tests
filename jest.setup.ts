@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom"
-import { enableFetchMocks } from 'jest-fetch-mock'
+const fetchPolifill = require('whatwg-fetch')
 
-enableFetchMocks()
-
+global.fetch = fetchPolifill.fetch
+global.Request = fetchPolifill.Request
+global.Headers = fetchPolifill.Headers
+global.Response = fetchPolifill.Response
