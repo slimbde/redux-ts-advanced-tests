@@ -1,6 +1,7 @@
 import { RootState } from './../../app/store';
 import cartReducer, { addToCart, CartState, getMemoizedNumItems, getNumItems, getTotalPrice, removeFromCart, updateQuantity, checkoutCart } from "./cartSlice"
 import products from "../../../public/products.json"
+import { CartItems } from "../../app/api";
 
 
 
@@ -287,12 +288,29 @@ describe("selectors", () => {
 })
 
 
-describe("thunks", () => {
-  ///// the tests below fail because fetch doesn't work in node environment
+////// YOU SHOULD MOCK THE MODULE IN THE TEST FILE WHERE YOU USE IT
 
+jest.mock("../../app/api", () => {
+  return {
+    async getProducts() {
+      return []
+    },
+
+    async checkout(items: CartItems = {}) {
+      const empty = Object.keys(items).length === 0
+      if (empty) throw new Error("Must include cart items")
+      if (items.badItem > 0) return { success: false }
+      return { success: true }
+    }
+  }
+})
+
+
+describe("thunks", () => {
   describe("checkoutCart w/mocked dispatch", () => {
     it("should checkout", async () => {
       const dispatch = jest.fn()
+
       const state: RootState = {
         products: { products: {} },
         cart: {
@@ -306,10 +324,14 @@ describe("thunks", () => {
       const { calls } = dispatch.mock
 
       expect(calls).toHaveLength(2)
+      expect(calls[0][0].type).toBe("cart/checkout/pending")
+      expect(calls[1][0].type).toBe("cart/checkout/fulfilled")
+      expect(calls[1][0].payload).toEqual({ success: true })
     })
 
     it("should fail with no items", async () => {
       const dispatch = jest.fn()
+
       const state: RootState = {
         products: { products: {} },
         cart: {
@@ -323,6 +345,9 @@ describe("thunks", () => {
       const { calls } = dispatch.mock
 
       expect(calls).toHaveLength(2)
+      expect(calls[0][0].type).toBe("cart/checkout/pending")
+      expect(calls[1][0].type).toBe("cart/checkout/rejected")
+      expect(calls[1][0].error.message).toEqual("Must include cart items")
     })
   })
 })
