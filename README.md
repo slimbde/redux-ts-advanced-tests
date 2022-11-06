@@ -1,6 +1,9 @@
 ## Redux Shopping Cart
 
-Example shopping cart application for learning redux and redux toolkit. Goes along with the egghead course.
+to install all apt dependencies run
+```cmd
+npm i @babel/preset-env@7.14.4 @babel/preset-react@7.13.13 @babel/preset-typescript@7.13.0 @testing-library/jest-dom@5.12.0 @testing-library/react@11.2.7 identity-obj-proxy@3.0.0
+```
 
 ## Setup
 
