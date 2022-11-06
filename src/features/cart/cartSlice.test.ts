@@ -1,9 +1,10 @@
-import { RootState } from './../../app/store';
+import { getStoreWithState, RootState, store } from './../../app/store';
 import cartReducer, { addToCart, CartState, getMemoizedNumItems, getNumItems, getTotalPrice, removeFromCart, updateQuantity, checkoutCart } from "./cartSlice"
 import products from "../../../public/products.json"
 import { CartItems } from "../../app/api";
 import configureStore from "redux-mock-store"
 import thunk from "redux-thunk"
+import { getStateWithItems } from "../test.utils";
 
 
 const mockStore = configureStore([thunk])
@@ -303,6 +304,7 @@ jest.mock("../../app/api", () => {
     async checkout(items: CartItems = {}) {
       const empty = Object.keys(items).length === 0
       if (empty) throw new Error("Must include cart items")
+      if (items.veryBadItem > 0) throw new Error("")
       if (items.badItem > 0) return { success: false }
       return { success: true }
     }
@@ -375,6 +377,68 @@ describe("thunks", () => {
       expect(actions[0].type).toBe("cart/checkout/pending")
       expect(actions[1].type).toBe("cart/checkout/rejected")
       expect(actions[1].error.message).toEqual("Must include cart items")
+    })
+  })
+
+  describe("checkoutCart w/full redux store", () => {
+    it("should checkout with items", async () => {
+      const state = getStateWithItems({ testItem: 3 })
+      const store = getStoreWithState(state)
+      await store.dispatch(checkoutCart())
+      expect(store.getState().cart).toEqual({
+        checkoutState: "READY",
+        errorMessage: "",
+        items: {}
+      })
+    })
+    it("should fail with no items", async () => {
+      const state = getStateWithItems({})
+      const store = getStoreWithState(state)
+      await store.dispatch(checkoutCart())
+      expect(store.getState().cart).toEqual({
+        checkoutState: "ERROR",
+        errorMessage: "Must include cart items",
+        items: {}
+      })
+    })
+    it("should fail with badItem", async () => {
+      const state = getStateWithItems({})
+      const store = getStoreWithState(state)
+      await store.dispatch(checkoutCart())
+      expect(store.getState().cart).toEqual({
+        checkoutState: "ERROR",
+        errorMessage: "Must include cart items",
+        items: {}
+      })
+    })
+    it("should handle an error response", async () => {
+      const state = getStateWithItems({
+        badItem: 3
+      })
+      const store = getStoreWithState(state)
+      await store.dispatch(checkoutCart())
+      expect(store.getState().cart.checkoutState).toEqual("ERROR")
+    })
+    it("should handle an empty error message", async () => {
+      const state = getStateWithItems({
+        veryBadItem: 3
+      })
+      const store = getStoreWithState(state)
+      await store.dispatch(checkoutCart())
+      expect(store.getState().cart.checkoutState).toEqual("ERROR")
+      expect(store.getState().cart.errorMessage).toEqual("")
+    })
+    it("should be pending before checking out", async () => {
+      const state = getStateWithItems({
+        testItem: 3
+      })
+      const store = getStoreWithState(state)
+
+      expect(store.getState().cart.checkoutState).toEqual("READY")
+      const action = store.dispatch(checkoutCart())
+      expect(store.getState().cart.checkoutState).toEqual("LOADING")
+      await action
+      expect(store.getState().cart.checkoutState).toEqual("READY")
     })
   })
 })
