@@ -12,7 +12,6 @@ getProductsSpy.mockResolvedValue(mockProducts)        //// each time it's trigge
 describe("Products component test", () => {
   it("should render Products component", async () => {
     const { debug } = renderComponent(<Products />)
-    debug()
 
     await waitFor(() => expect(getProductsSpy).toHaveBeenCalledTimes(1))
     const articles = screen.getAllByRole("article")
