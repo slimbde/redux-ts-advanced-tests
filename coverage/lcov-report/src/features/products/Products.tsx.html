@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,22 +114,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,7 +135,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,20 +156,20 @@ import { addToCart } from "../cart/cartSlice";
 import { getProducts } from "../../app/api";
 import styles from "./Products.module.css";
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >Products(</span>) {
-  const dispatch = <span class="cstat-no" title="statement not covered" >useAppDispatch();</span>
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    getProducts().then(<span class="fstat-no" title="function not covered" >(p</span>roducts) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      dispatch(receivedProducts(products));</span>
+export function Products() {
+  const dispatch = useAppDispatch();
+  useEffect(() =&gt; {
+    getProducts().then((products) =&gt; {
+      dispatch(receivedProducts(products));
     });
   }, []);
-  const products = <span class="cstat-no" title="statement not covered" >useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.products.products)</span>;</span>
+  const products = useAppSelector((state) =&gt; state.products.products);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;main className="page"&gt;
       &lt;ul className={styles.products}&gt;
-        {Object.values(products).map(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; (
-<span class="cstat-no" title="statement not covered" >          &lt;li key={product.id}&gt;</span>
+        {Object.values(products).map((product) =&gt; (
+          &lt;li key={product.id}&gt;
             &lt;article className={styles.product}&gt;
               &lt;figure&gt;
                 &lt;img src={product.imageURL} alt={product.imageAlt} /&gt;
@@ -181,7 +181,7 @@ export function <span class="fstat-no" title="function not covered" >Products(</
                 &lt;h1&gt;{product.name}&lt;/h1&gt;
                 &lt;p&gt;{product.description}&lt;/p&gt;
                 &lt;p&gt;${product.price}&lt;/p&gt;
-                &lt;button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(addToCart(product.id))}</span>&gt;
+                &lt;button onClick={() =&gt; dispatch(addToCart(product.id))}&gt;
                   Add to Cart 🛒
                 &lt;/button&gt;
               &lt;/div&gt;
@@ -199,7 +199,7 @@ export function <span class="fstat-no" title="function not covered" >Products(</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-03T11:27:21.041Z
+                at 2022-11-06T11:59:31.971Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

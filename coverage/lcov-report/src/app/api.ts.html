@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.84% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/13</span>
+                <span class='fraction'>1/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -120,23 +120,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export interface Product {
   id: string;
   name: string;
@@ -150,21 +150,21 @@
 export async function <span class="fstat-no" title="function not covered" >getProducts(</span>): Promise&lt;Product[]&gt; {
   const results = <span class="cstat-no" title="statement not covered" >await fetch("/products.json");</span>
   const products = <span class="cstat-no" title="statement not covered" >results.json();</span>
-<span class="cstat-no" title="statement not covered" >  return products;</span>
+<span class="cstat-no" title="statement not covered" >  return products as unknown as Product[];</span>
 }
 &nbsp;
 export type CartItems = { [productID: string]: number };
 export type CheckoutResponse = { success: boolean; error?: string };
 &nbsp;
-export async function checkout(items: CartItems): Promise&lt;CheckoutResponse&gt; {
-  const modifier = Object.keys(items).length &gt; 0 ? "success" : <span class="branch-1 cbranch-no" title="branch not covered" >"error";</span>
-  const url = `/checkout-${modifier}.json`;
-  await sleep(500);
-  const response = await fetch(url, {
+export async function <span class="fstat-no" title="function not covered" >checkout(</span>items: CartItems): Promise&lt;CheckoutResponse&gt; {
+  const modifier = <span class="cstat-no" title="statement not covered" >Object.keys(items).length &gt; 0 ? "success" : "error";</span>
+  const url = <span class="cstat-no" title="statement not covered" >`/checkout-${modifier}.json`;</span>
+<span class="cstat-no" title="statement not covered" >  await sleep(500);</span>
+  const response = <span class="cstat-no" title="statement not covered" >await fetch(url, {</span>
     method: "POST",
     body: JSON.stringify(items),
   });
-  const data = await response.json();
+  const data = <span class="cstat-no" title="statement not covered" >await response.json() as CheckoutResponse;</span>
 <span class="cstat-no" title="statement not covered" >  if (!data.success) {</span>
 <span class="cstat-no" title="statement not covered" >    throw new Error(data.error);</span>
   }
@@ -172,8 +172,8 @@ export async function checkout(items: CartItems): Promise&lt;CheckoutResponse&gt
 }
 &nbsp;
 // utility function to simulate slowness in an API call
-const sleep = (time: number) =&gt;
-  new Promise((res) =&gt; setTimeout(res, time));
+const sleep = <span class="fstat-no" title="function not covered" >(t</span>ime: number) =&gt;
+<span class="cstat-no" title="statement not covered" >  new Promise(<span class="fstat-no" title="function not covered" >(r</span>es) =&gt; <span class="cstat-no" title="statement not covered" >setTimeout(res, time))</span>;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -181,7 +181,7 @@ const sleep = (time: number) =&gt;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-03T11:27:21.041Z
+                at 2022-11-06T11:59:31.971Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
